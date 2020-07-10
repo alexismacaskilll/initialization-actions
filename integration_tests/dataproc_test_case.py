@@ -95,7 +95,7 @@ class DataprocTestCase(parameterized.TestCase):
                       master_accelerator=None,
                       worker_accelerator=None,
                       optional_components=None,
-                      machine_type="n1-standard-1",
+                      machine_type="e2-standard-2",
                       boot_disk_size="50GB"):
         self.initClusterName(configuration)
         self.cluster_version = None
@@ -132,8 +132,11 @@ class DataprocTestCase(parameterized.TestCase):
 
         args.append("--master-machine-type={}".format(machine_type))
         args.append("--worker-machine-type={}".format(machine_type))
+
         args.append("--master-boot-disk-size={}".format(boot_disk_size))
         args.append("--worker-boot-disk-size={}".format(boot_disk_size))
+
+        args.append("‑‑no-address")
         args.append("--format=json")
 
         args.append("--region={}".format(self.REGION))
